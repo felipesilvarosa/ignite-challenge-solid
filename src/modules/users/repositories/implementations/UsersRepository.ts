@@ -30,7 +30,11 @@ class UsersRepository implements IUsersRepository {
   findById(id: string): User | undefined {
     const userFound = this.users.find((user) => user.user_id === id);
 
-    return userFound;
+    if (userFound) {
+      return userFound;
+    }
+
+    throw new Error("User not found");
   }
 
   findByEmail(email: string): User | undefined {
@@ -44,7 +48,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   list(): User[] {
-    // Complete aqui
+    return this.users;
   }
 }
 
